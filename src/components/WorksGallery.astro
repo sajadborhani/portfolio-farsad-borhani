@@ -1,9 +1,15 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { documentedWorks, otherWorks } from '../data/works';
 
 // Flat list the lightbox navigates through (documented first, then the rest).
 const all = [...documentedWorks, ...otherWorks];
+
+// Lightbox-only 2000 px variants (the grid keeps 480/900/1400).
+const largeVariants = await Promise.all(
+  // Never upscale beyond the source's natural width.
+  all.map((w) => getImage({ src: w.image, width: Math.min(2000, w.image.width), format: 'webp', quality: 78 }))
+);
 ---
 
 <div class="works-head">
@@ -43,20 +49,21 @@ const all = [...documentedWorks, ...otherWorks];
 </div>
 
 <script type="application/json" id="works-data" set:html={JSON.stringify(
-  all.map((w) =>
-    w.kind === 'documented'
+  all.map((w, i) => ({
+    large: largeVariants[i].src,
+    ...(w.kind === 'documented'
       ? { t: `اثر ${w.numberFa}`, en: `Work ${w.numberEn}`, rows: [
           ['شماره اثر', 'Work', w.numberFa, w.numberEn],
           ['مدیوم', 'Medium', w.mediumFa, w.mediumEn],
           ['ابعاد', 'Dimensions', w.dims, w.dims],
           ['سال ساخت', 'Year', w.yearFa, w.yearEn],
         ] }
-      : { t: 'بدون عنوان', en: 'Untitled', rows: [] },
-  ),
+      : { t: 'بدون عنوان', en: 'Untitled', rows: [] }),
+  })),
 )} />
 
 <dialog class="lightbox" id="lightbox" aria-label="نمایش اثر">
-  <figure class="lb-figure"><img id="lb-img" alt="" /></figure>
+  <figure class="lb-figure"><img id="lb-img" alt="" decoding="async" /></figure>
   <div class="lb-panel">
     <button class="lb-close" id="lb-close" aria-label="بستن">✕</button>
     <button class="lb-nav lb-prev" id="lb-prev" aria-label="اثر قبلی">→</button>
@@ -81,9 +88,9 @@ const all = [...documentedWorks, ...otherWorks];
     current = (i + cards.length) % cards.length;
     const card = cards[current];
     const img = card.querySelector('img')!;
-    imgEl.src = img.currentSrc || img.src;
-    imgEl.alt = img.alt;
     const meta = data[current];
+    imgEl.src = meta.large || img.currentSrc || img.src;
+    imgEl.alt = img.alt;
     numEl.textContent = meta.en;
     titleEl.textContent = meta.t;
     rowsEl.innerHTML = meta.rows.map(([faLabel, enLabel, faValue, enValue]: string[]) => `
