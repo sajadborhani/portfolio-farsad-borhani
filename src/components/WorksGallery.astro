@@ -4,7 +4,6 @@ import { documentedWorks, otherWorks } from '../data/works';
 
 // Flat list the lightbox navigates through (documented first, then the rest).
 const all = [...documentedWorks, ...otherWorks];
-const indexOf = (i: number) => i;
 ---
 
 <div class="works-head">
@@ -19,8 +18,7 @@ const indexOf = (i: number) => i;
 
 <p class="group-label">مجموعه «بی‌افق» — شماره‌گذاری کاتالوگ</p>
 <div class="masonry" id="works-grid">
-  {documentedWorks.map((w) => {
-    const i = indexOf(documentedWorks.indexOf(w));
+  {documentedWorks.map((w, i) => {
     return (
       <button class="work-card" data-index={i} aria-label={`اثر ${w.numberFa} — بزرگ‌نمایی`}>
         <Image src={w.image} widths={[480, 900, 1400]} sizes="(min-width:1020px) 33vw, (min-width:620px) 50vw, 100vw" alt={w.altFa} loading="eager" decoding="async" />
@@ -70,7 +68,6 @@ const indexOf = (i: number) => i;
 </dialog>
 
 <script>
-  const grid = document.getElementById('works-grid');
   const dialog = document.getElementById('lightbox') as HTMLDialogElement;
   const imgEl = document.getElementById('lb-img') as HTMLImageElement;
   const numEl = document.getElementById('lb-number')!;
