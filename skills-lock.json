@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "skills": {
+    "astro": {
+      "source": "astrolicious/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/astro/SKILL.md",
+      "computedHash": "125dee2aaf517f986de72356842011af0b1641a13bf8c71f226dee2e41c38fe6"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c"
+    },
+    "publish-to-pages": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/publish-to-pages/SKILL.md",
+      "computedHash": "488c7d0d6caa59abffe941088b6c52a4595fbbe186e5ebe65958289b0d8a58ae"
+    }
+  }
+}

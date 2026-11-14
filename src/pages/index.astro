@@ -1,0 +1,141 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import WorksGallery from '../components/WorksGallery.astro';
+import portrait from '../assets/portrait.png';
+import heroArtwork from '../assets/hero-artwork.png';
+---
+
+<Base
+  title="فرساد برهانی — نقاش و طراح گرافیک | Farsad Borhani"
+  description="پورتفولیوی فرساد برهانی، نقاش و طراح گرافیک ایرانی؛ مجموعهٔ «بی‌افق» و سایر آثار نقاشی. Portfolio of Farsad Borhani, Iranian painter and graphic designer — the «Bi-Ofaq / Horizonless» series and more."
+>
+
+  <!-- ———————————————— HERO ———————————————— -->
+  <section class="hero" aria-label="فرساد برهانی">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="kicker">Portfolio — نقاش و طراح گرافیک</p>
+        <h1>
+          FARSAD<br />BORHANI
+          <svg class="brush" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+            <path fill="#8295b1" opacity="0.92" d="M8 96c60-34 118 20 178-8 66-30 84-58 168-34 62 18 96-16 148 6 42 18 96 4 118 22-8 22-64 34-116 26-72-12-134 30-206 6-70-23-112 8-170-6-14 8-14-6-14-6z"/>
+            <path fill="#8295b1" opacity="0.55" d="M30 128c90-16 150 8 236-10 92-19 148 6 236-8 46-6 66 8 68 14-86 12-160-6-240 8-76 13-180-2-300-4z"/>
+          </svg>
+        </h1>
+        <p class="hero-sub">فرساد برهانی <span class="dot">/</span> <span style="font-size:0.82em; font-weight:700">نقاش و طراح گرافیک</span></p>
+        <p class="hero-born">متولد ۱۳۷۹، ایران <span aria-hidden="true"> · </span><span class="ltr">Born 1379, Iran</span></p>
+        <p class="hero-en ltr">Painter — Graphic Designer · ACRYLIC / OIL ON CANVAS</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#works">مشاهدهٔ آثار / Works</a>
+          <a class="btn btn-ghost" href="#contact">تماس / Contact</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <figure>
+          <Image src={heroArtwork} alt="اثر ۰۲ — پرترهٔ نقاش در حال کار؛ رنگ روغن روی بوم، ۲۰۰*۸۵" widths={[480, 800, 1200]} sizes="(min-width:880px) 40vw, 78vw" loading="eager" fetchpriority="high" decoding="async" />
+          <figcaption><span>اثر ۰۲ — خودنگارهٔ نقاش در حال کار</span><span class="ltr">200 × 85</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="checker" role="separator" aria-hidden="true"></div></div>
+
+  <!-- ———————————————— ABOUT / BIO ———————————————— -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container about-grid">
+      <div>
+        <Image class="portrait" src={portrait} alt="پرترهٔ سیاه‌وسفید فرساد برهانی" widths={[360, 640]} sizes="(min-width:880px) 38vw, 100vw" />
+      </div>
+      <div class="about-body">
+        <p class="kicker">About — درباره</p>
+        <h2 class="section-title" id="about-title"><span class="about-name">فرساد برهانی</span><small>FARSAD BORHANI</small></h2>
+        <p class="about-lead">نقاش و طراح گرافیک <span class="dot">·</span> <span class="ltr">Painter &amp; Graphic Designer</span></p>
+        <p class="hero-born" style="margin-bottom:1.2rem">متولد ۱۳۷۹، ایران</p>
+
+        <p>فرساد برهانی نقاش و طراح گرافیک ایرانی است. فعالیت حرفه‌ای خود را از حوزهٔ گرافیک، چاپ و طراحی تبلیغاتی آغاز کرد و همزمان مسیر خود را در نقاشی دنبال کرد. او دارای دیپلم گرافیک و مدرک کارشناسی نقاشی از دانشکدهٔ هنر سمنان است و از سال ۱۳۹۷ به‌صورت تخصصی در زمینهٔ نقاشی فعالیت می‌کند.</p>
+        <p>تجربهٔ او در طراحی گرافیک و چاپ، در کنار تحصیلات دانشگاهی در رشتهٔ نقاشی، بخش مهمی از شکل‌گیری زبان بصری آثارش را تشکیل داده است. در آثار او، انسان و مسالهٔ هویت در ارتباط با مفاهیمی همچون تنهایی، فاصله، سکوت، عدم قطعیت و ناپایداری ادراک مورد توجه قرار می‌گیرند.</p>
+        <p>فرآیند خلق اثر برای او بخشی از فرآیند جست‌وجوی معناست. تغییر، حذف، بازسازی و مواجههٔ دوباره با سطح نقاشی در شکل‌گیری نهایی آثار او نقش دارند.</p>
+
+        <div class="bio-cols">
+          <div class="bio-card">
+            <h3><span class="sq" aria-hidden="true"></span>تحصیلات <span class="ltr" aria-hidden="true" style="color:var(--steel-deep)">/ Education</span></h3>
+            <ul>
+              <li>کارشناسی نقاشی، دانشکدهٔ هنر سمنان، ورودی ۱۳۹۷</li>
+              <li>دیپلم گرافیک</li>
+            </ul>
+          </div>
+          <div class="bio-card">
+            <h3><span class="sq" aria-hidden="true"></span>نمایشگاه‌ها <span class="ltr" aria-hidden="true" style="color:var(--steel-deep)">/ Exhibitions</span></h3>
+            <ul>
+              <li>نمایشگاه انفرادی نقاشی، دانشکدهٔ هنر سمنان</li>
+              <li>نمایشگاه گروهی نقاشی، فرهنگ‌سرای سمنان — ۲ دوره</li>
+              <li>نمایشگاه گروهی نقاشی، گالری رادین، مشهد</li>
+              <li>نمایشگاه انفرادی نقاشی «بی‌افق»، نگارخانهٔ آسمان، مشهد</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="en-note" dir="ltr" style="text-align:left">Farsad Borhani is an Iranian painter and graphic designer born in 1379 (Iran). He began his career in graphic design, print and advertising while pursuing painting, and has worked professionally as a painter since 1397. He holds a diploma in graphic design and a BA in painting from the Faculty of Art, Semnan University.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="checker" role="separator" aria-hidden="true"></div></div>
+
+  <!-- ———————————————— STATEMENT ———————————————— -->
+  <section id="statement" aria-labelledby="statement-title">
+    <div class="container">
+      <p class="kicker" style="text-align:center">Artist Statement — بیانیهٔ هنرمند</p>
+      <div class="biofaq" aria-hidden="true">
+        <p class="horizonless">HORIZONLESS</p>
+        <p class="bifeq">بی‌افق</p>
+      </div>
+      <h2 id="statement-title" class="section-title" style="text-align:center; font-size:clamp(1.2rem,3vw,1.6rem)">بیانیهٔ مجموعه</h2>
+
+      <div class="statement-body">
+        <p>نقاشی برای من همواره «نقطه مماس با زندگی» بوده است؛ زبانی برای لمس واقعیت، ثبت تجربه و جست‌وجوی هویت. اما در این مجموعه، این نقطه تماس دیگر محل ایستادن نیست؛ فضایی است برای مکث، تأمل و مواجهه با لحظه‌ای که تصویرهای آشنای ما از آینده فرو می‌ریزند و ما با اکنون روبه‌رو می‌شویم.</p>
+        <p>«بی‌افق» دربارهٔ وضعیت تعلیق است؛ جایی میان حضور و غیاب، میان آنچه دیده می‌شود و آنچه پنهان می‌ماند. فیگورهای این مجموعه، گاه در پس نقاب‌ها و ابژه‌ها محو شده‌اند و گاه در فضاهایی بی‌زمان معلق مانده‌اند. آن‌ها قهرمانان یک روایت نیستند؛ شاهدان خاموش تجربه‌ای انسانی‌اند که در جست‌وجوی معنا و هویت شکل می‌گیرند.</p>
+      </div>
+      <div class="statement-en" dir="ltr">
+        <p>Painting has always been for me «the point of tangency with life»; a language for touching reality, recording experience and searching for identity. But in this series, that point of contact is no longer a place to stand — it is a space for pausing, for reflection, and for facing the moment when our familiar images of the future collapse and we are confronted with the present.</p>
+        <p>«Bi-ofaq» (Horizonless) is about a state of suspension: a place between presence and absence, between what is seen and what remains hidden. The figures in this series are sometimes dissolved behind masks and objects, and sometimes suspended in timeless spaces. They are not heroes of a narrative; they are silent witnesses of a human experience taking shape in the search for meaning and identity.</p>
+      </div>
+      <p class="statement-sign"><span class="sig">فرساد برهانی</span><span class="season">پاییز ۴۰۵ / Autumn 1405</span></p>
+    </div>
+  </section>
+
+  <div class="container"><div class="checker" role="separator" aria-hidden="true"></div></div>
+
+  <!-- ———————————————— WORKS ———————————————— -->
+  <section id="works" aria-label="آثار">
+    <div class="container">
+      <WorksGallery />
+    </div>
+  </section>
+
+  <!-- ———————————————— CONTACT ———————————————— -->
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <p class="kicker">Contact — تماس</p>
+      <h2 class="section-title" id="contact-title">برای خرید آثار با ما در تماس باشید<small>FOR PURCHASE INQUIRIES</small></h2>
+
+      <div class="contact-rows">
+        <a class="contact-row" href="tel:+989056355225">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" stroke="#8295b1" stroke-width="1.6"/><path d="M8.5 6.5c.6-.6 1.6-.6 2.1 0l1.2 1.3c.5.5.5 1.3 0 1.8L10.8 11c.6 1.4 2 2.8 3.4 3.4l1.4-1c.5-.5 1.3-.5 1.8 0l1.3 1.2c.6.6.6 1.5 0 2.1l-.9.9c-.7.7-1.8 1-2.7.7-2.7-1-6-3.6-7.7-7.1-.4-.9-.1-2 .6-2.7l.9-.9z" fill="#d6d7d0"/></svg>
+          <span><span class="label">Phone / Telegram — تلفن / تلگرام</span><span class="value ltr">+98 905 635 5225</span></span>
+        </a>
+        <a class="contact-row" href="https://www.instagram.com/asemangallerymashhad/" target="_blank" rel="noopener noreferrer">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="#8295b1" stroke-width="1.6"/><circle cx="12" cy="12" r="4.4" stroke="#d6d7d0" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.3" fill="#d6d7d0"/></svg>
+          <span><span class="label">Instagram</span><span class="value ltr">ASEMANGALLERYMASHHAD</span></span>
+        </a>
+        <a class="contact-row" href="https://www.google.com/maps/search/%D9%86%DA%AF%D8%A7%D8%B1%D8%AE%D8%A7%D9%86%D9%87%20%D8%A2%D8%B3%D9%85%D8%A7%D9%86%20%D9%85%D8%B4%D9%87%D8%AF" target="_blank" rel="noopener noreferrer">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z" stroke="#8295b1" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.6" fill="#d6d7d0"/></svg>
+          <span><span class="label">Address — نشانی</span><span class="value">مشهد | نبش وکیل‌آباد ۳۸ | نگارخانهٔ آسمان</span><span class="en-note ltr" style="color:rgba(214,215,208,.65)">Mashhad | Vakil-Abad, corner of Vakil-Abad 38 | Aseman Gallery</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Base>

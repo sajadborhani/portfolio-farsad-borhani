@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import { documentedWorks, otherWorks } from '../data/works';
+
+// Flat list the lightbox navigates through (documented first, then the rest).
+const all = [...documentedWorks, ...otherWorks];
+const indexOf = (i: number) => i;
+---
+
+<div class="works-head">
+  <div>
+    <p class="kicker">Selected Works — ۰۱ تا ۱۹</p>
+    <h2 class="section-title">آثار<small>WORKS</small></h2>
+  </div>
+  <p class="ltr" style="max-width:34ch; font-size:0.82rem; color:var(--ink-soft)">
+    Catalog works ۰۱–۱۹ from the «بی‌افق» series, plus additional studio works. Click any piece to enlarge.
+  </p>
+</div>
+
+<p class="group-label">مجموعه «بی‌افق» — شماره‌گذاری کاتالوگ</p>
+<div class="masonry" id="works-grid">
+  {documentedWorks.map((w) => {
+    const i = indexOf(documentedWorks.indexOf(w));
+    return (
+      <button class="work-card" data-index={i} aria-label={`اثر ${w.numberFa} — بزرگ‌نمایی`}>
+        <Image src={w.image} widths={[480, 900, 1400]} sizes="(min-width:1020px) 33vw, (min-width:620px) 50vw, 100vw" alt={w.altFa} loading="eager" decoding="async" />
+        <span class="chip">اثر {w.numberFa}</span>
+        <figcaption><span>{w.mediumFa}</span><span class="yr">{w.yearEn}</span></figcaption>
+      </button>
+    );
+  })}
+</div>
+
+<p class="group-label">سایر آثار — مجموعه‌ی استودیو</p>
+<div class="masonry">
+  {otherWorks.map((w, j) => {
+    const i = documentedWorks.length + j;
+    return (
+      <button class="work-card undocumented" data-index={i} aria-label={`بزرگ‌نمایی اثر`}>
+        <Image src={w.image} widths={[480, 900, 1400]} sizes="(min-width:1020px) 33vw, (min-width:620px) 50vw, 100vw" alt={w.altFa} loading="eager" decoding="async" />
+        <figcaption><span>بدون عنوان</span><span class="yr en-note">مطالعه / Study</span></figcaption>
+      </button>
+    );
+  })}
+</div>
+
+<script type="application/json" id="works-data" set:html={JSON.stringify(
+  all.map((w) =>
+    w.kind === 'documented'
+      ? { t: `اثر ${w.numberFa}`, en: `Work ${w.numberEn}`, rows: [
+          ['شماره اثر', 'Work', w.numberFa, w.numberEn],
+          ['مدیوم', 'Medium', w.mediumFa, w.mediumEn],
+          ['ابعاد', 'Dimensions', w.dims, w.dims],
+          ['سال ساخت', 'Year', w.yearFa, w.yearEn],
+        ] }
+      : { t: 'بدون عنوان', en: 'Untitled', rows: [] },
+  ),
+)} />
+
+<dialog class="lightbox" id="lightbox" aria-label="نمایش اثر">
+  <figure class="lb-figure"><img id="lb-img" alt="" /></figure>
+  <div class="lb-panel">
+    <button class="lb-close" id="lb-close" aria-label="بستن">✕</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="اثر قبلی">→</button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="اثر بعدی">←</button>
+    <p class="lb-number" id="lb-number"></p>
+    <h3 class="lb-title" id="lb-title"></h3>
+    <dl class="lb-rows" id="lb-rows"></dl>
+  </div>
+</dialog>
+
+<script>
+  const grid = document.getElementById('works-grid');
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement;
+  const imgEl = document.getElementById('lb-img') as HTMLImageElement;
+  const numEl = document.getElementById('lb-number')!;
+  const titleEl = document.getElementById('lb-title')!;
+  const rowsEl = document.getElementById('lb-rows')!;
+  const data = JSON.parse(document.getElementById('works-data')!.textContent!);
+  const cards = Array.from(document.querySelectorAll<HTMLButtonElement>('.work-card[data-index]'));
+  let current = 0;
+
+  function render(i: number) {
+    current = (i + cards.length) % cards.length;
+    const card = cards[current];
+    const img = card.querySelector('img')!;
+    imgEl.src = img.currentSrc || img.src;
+    imgEl.alt = img.alt;
+    const meta = data[current];
+    numEl.textContent = meta.en;
+    titleEl.textContent = meta.t;
+    rowsEl.innerHTML = meta.rows.map(([faLabel, enLabel, faValue, enValue]: string[]) => `
+      <div class="lb-row"><dt>${faLabel}<span class="en">${enLabel}</span></dt>
+      <dd>${faValue}<span class="en ltr">${enValue}</span></dd></div>`).join('');
+  }
+
+  function open(i: number) { render(i); dialog.showModal(); }
+
+  document.querySelectorAll<HTMLButtonElement>('.work-card[data-index]').forEach((card) => {
+    card.addEventListener('click', () => open(Number(card.dataset.index)));
+  });
+  document.getElementById('lb-close')!.addEventListener('click', () => dialog.close());
+  document.getElementById('lb-prev')!.addEventListener('click', () => render(current - 1));
+  document.getElementById('lb-next')!.addEventListener('click', () => render(current + 1));
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') render(current - 1);   // RTL: → is "previous"
+    if (e.key === 'ArrowLeft') render(current + 1);
+  });
+</script>

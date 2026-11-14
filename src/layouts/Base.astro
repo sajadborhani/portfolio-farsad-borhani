@@ -1,0 +1,51 @@
+---
+import '@fontsource/anton/index.css';
+import '@fontsource/vazirmatn/400.css';
+import '@fontsource/vazirmatn/700.css';
+import '@fontsource/vazirmatn/900.css';
+import '@fontsource/noto-nastaliq-urdu/400.css';
+import '@fontsource/noto-nastaliq-urdu/700.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+---
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="wordmark" href={import.meta.env.BASE_URL} aria-label="فرساد برهانی — خانه">
+          FARSAD&nbsp;BORHANI <small>فرساد برهانی</small>
+        </a>
+        <nav class="site-nav" aria-label="بخش‌های صفحه">
+          <a href="#about">درباره / About</a>
+          <a href="#statement">بیانیه / Statement</a>
+          <a href="#works">آثار / Works</a>
+          <a href="#contact">تماس / Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <span>فرساد برهانی © ۱۴۰۵ / Farsad Borhani</span>
+        <span class="ltr">ACRYLIC / OIL ON CANVAS — اکریلیک / رنگ روغن روی بوم</span>
+      </div>
+    </footer>
+  </body>
+</html>
