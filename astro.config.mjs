@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 // The deploy workflow in .github/workflows/deploy.yml sets both automatically
 // from the repository owner/name, so no hardcoding is needed.
 const site = process.env.SITE ?? 'https://example.github.io';
-const base = process.env.BASE ?? '/farsad-portfolio/';
+const base = process.env.BASE ?? '/portfolio-farsad-borhani/';
 
 export default defineConfig({
   site,

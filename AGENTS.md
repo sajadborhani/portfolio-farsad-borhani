@@ -17,7 +17,7 @@ Rules to never hit it again:
 
 ## Site notes
 
-- Astro 7 SSG single page. Build: `npm run build`. Preview from `dist/` with base `/farsad-portfolio/`.
+- Astro 7 SSG single page. Build: `npm run build`. Preview from `dist/` with base `/portfolio-farsad-borhani/`.
 - Gallery images: eager loading + `decoding="async"` — switching to `loading="lazy"` caused blank
   cards in headless Firefox screenshots. Do not flip without checking in a real browser.
-- Source paintings are 1500–2000 px; lightbox shows the card `currentSrc` (≤ 1400w).
+- Source paintings are up to 2000 px; the grid serves ≤ 1400w and the lightbox uses native ~2000w variants from `getImage()`.

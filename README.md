@@ -14,7 +14,7 @@ steel-blue condensed display type, black Persian overprint, checkerboard rules.
 npm install
 npm run dev      # local dev server
 npm run build    # static build → dist/
-npm run preview  # serve dist/ at http://localhost:4321/farsad-portfolio/
+npm run preview  # serve dist/ at http://localhost:4321/portfolio-farsad-borhani/
 npm run check    # astro check (types)
 ```
 
@@ -50,7 +50,7 @@ public/favicon.svg
 4. For a custom domain, add it under **Settings → Pages** and set `SITE` in `astro.config.mjs`
    (or as a workflow env var) to that domain.
 
-Local builds default to `SITE=https://example.github.io` and `BASE=/farsad-portfolio/`.
+Local builds default to `SITE=https://example.github.io` and `BASE=/portfolio-farsad-borhani/`.
 
 ## Notes
 
